@@ -32,7 +32,7 @@ public class Spreadsheet implements Grid
 				Location loc = new SpreadsheetLoc(parts[0].trim().toUpperCase());
 				if (isInteger(parts[1].trim())) {
 					cells[loc.getRow()-1][loc.getCol()] = new IntCell(Integer.parseInt(parts[1].trim()));
-					return "INT ITS AN INT!!!!!";
+					return "INT ITS AN INT!!!!!!";
 				} else {
 
 
