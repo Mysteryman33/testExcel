@@ -34,6 +34,11 @@ public class Spreadsheet implements Grid
 			} else {
 				String[] parts = command.split("=");
 				Location loc = new SpreadsheetLoc(parts[0].trim().toUpperCase());
+				if (isInteger(parts[1].trim())) {
+					cells[loc.getRow()-1][loc.getCol()] = new IntCell(Integer.parseInt(parts[1].trim()));
+					return "INT ITS AN INT!!!!!!";
+				} else {
+
 				if (isDouble(parts[1].trim())) {
 					cells[loc.getRow()-1][loc.getCol()] = new IntCell(Double.parseDouble(parts[1].trim()));
 					return "INT ITS AN INT welll its technically a double!!!!!!";
@@ -46,7 +51,16 @@ public class Spreadsheet implements Grid
 				cells[loc.getRow()-1][loc.getCol()] = new TextCell(parts[1].trim());
 				return "Got it! Personal Owen Excel Manager At Your Service \n";}
 		} 
-		} else if (command.equals("clear")) {
+		} 
+		else if (command.contains("type")) {
+			String[] parts = command.split(" ");
+			Location loc = new SpreadsheetLoc(parts[1].trim().toUpperCase());
+			System.out.print((cells[loc.getRow()-1][loc.getCol()]).getClass().getSimpleName());
+
+		}
+	
+
+		else if (command.equals("clear")) {
 			cells = new Cell[10][10];
 		} else {
 			Location loc = new SpreadsheetLoc(command.trim().toUpperCase());
@@ -56,6 +70,7 @@ public class Spreadsheet implements Grid
 			}
 			return c.fullCellText();
 		}
+
 		// TODO Auto-generated method stub
 		return "";
 	}
