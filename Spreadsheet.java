@@ -35,14 +35,22 @@ public class Spreadsheet implements Grid
 					return "INT ITS AN INT!!!!!!";
 				} else {
 
-
-
 				cells[loc.getRow()-1][loc.getCol()] = new TextCell(parts[1].trim());
 				return "Got it! Personal Owen Excel Manager At Your Service \n";}
 		} 
-		} else if (command.equals("clear")) {
+		} 
+		else if (command.contains("type")) {
+			String[] parts = command.split(" ");
+			Location loc = new SpreadsheetLoc(parts[1].trim().toUpperCase());
+			System.out.print((cells[loc.getRow()-1][loc.getCol()]).getClass().getSimpleName());
+
+		}
+	
+
+		else if (command.equals("clear")) {
 			cells = new Cell[10][10];
 		}
+
 		// TODO Auto-generated method stub
 		return "";
 	}

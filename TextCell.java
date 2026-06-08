@@ -6,8 +6,6 @@ public class TextCell implements Cell{
         this.val = value;
     }
 
-    
-
     @Override
     public String fullCellText() {
         return val;
