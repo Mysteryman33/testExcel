@@ -1,7 +1,7 @@
-public class IntCell implements Cell{
+public class PercentCell implements Cell{
     private double val;
 
-    public IntCell(double value) {
+    public PercentCell(double value) {
         this.val = value;
     }
 
@@ -9,12 +9,12 @@ public class IntCell implements Cell{
 
     @Override
     public String fullCellText() {
-        return Double.toString(val);
+        return Double.toString(val*0.01);
     }
 
     @Override
     public String abbreviatedCellText(){
-        return (val + "          ").substring(0, 10);
+        return (val + "%         ").substring(0, 10);
     }
 
 }
