@@ -27,14 +27,22 @@ public class Spreadsheet implements Grid
 		} else if (command.contains("=")){
 			if (command.contains("avg")){
 				String[] parts = command.split("-");
-				System.out.println(Arrays.toString(parts));
+				Location loc2 = new SpreadsheetLoc(parts[1].trim().toUpperCase());
 				String [] parts2 = parts[0].split("=");
 				Location loc = new SpreadsheetLoc(parts2[0].trim().toUpperCase());
+				String[] parts3 = parts2[1].split("avg");
+				Location loc3 = new SpreadsheetLoc(parts3[1].trim().toUpperCase());			
 				
+				double sum = 0;
+				sum += Double.parseDouble(getCell(loc3).fullCellText());
+				sum += Double.parseDouble(getCell(loc2).fullCellText());
+				sum = sum/2;
+				cells[loc.getRow()-1][loc.getCol()] = new IntCell(sum);
+				return "avg avg avga vga eyweufrgweiufswhifghsdifjuasofjsdof";
 			} else {
 				String[] parts = command.split("=");
 				Location loc = new SpreadsheetLoc(parts[0].trim().toUpperCase());
-				if (isInteger(parts[1].trim())) {
+				if (isDouble(parts[1].trim())) {
 					cells[loc.getRow()-1][loc.getCol()] = new IntCell(Integer.parseInt(parts[1].trim()));
 					return "INT ITS AN INT!!!!!!";
 				} else {
@@ -51,7 +59,7 @@ public class Spreadsheet implements Grid
 				cells[loc.getRow()-1][loc.getCol()] = new TextCell(parts[1].trim());
 				return "Got it! Personal Owen Excel Manager At Your Service \n";}
 		} 
-		} 
+	}}
 		else if (command.contains("type")) {
 			String[] parts = command.split(" ");
 			Location loc = new SpreadsheetLoc(parts[1].trim().toUpperCase());
